@@ -1,7 +1,8 @@
 [![](https://images.microbadger.com/badges/image/meyay/docker-dind.svg)](https://microbadger.com/images/meyay/docker-dind "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/meyay/docker-dind.svg)](https://microbadger.com/images/meyay/docker-dind "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/commit/meyay/docker-dind.svg)](https://microbadger.com/images/meyay/docker-dind "Get your own commit badge on microbadger.com")
 # Docker in Docker (DinD)
 
-Based on the official docker:18.09.6-dind image, comes with precompiled docker-compose.
+Based on the official docker:dind image, which is for time beeing the latest 18.09.x version.
+This image includes additionaly git, curl, expect, python3 and docker-compose.
 
 ## Docker CLI Usage 
 ```sh
@@ -25,6 +26,8 @@ docker run -d \
  --volume /volume1/docker/dind/data:/data:shared \
   meyay/docker-dind:18.09.6
 ```
+
+The network needs to be created only once!
 
 ## Docker Compose Usage 
 ```
@@ -55,6 +58,7 @@ networks:
         gateway: 192.168.200.1
         ip_range: 192.168.200.17/32
 ```
+Docker-Compose will creat the network on `up` and remove it on `down` 
 
 ## Parameters
 The environment parameters are split into two halves, separated by an equal, the left hand side representing the host and the right the container side.
