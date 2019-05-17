@@ -1,12 +1,12 @@
-FROM docker:18.09.6-dind 
+FROM docker:dind 
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Docker in Docker 18.09.6" \
-      org.label-schema.description="Docker in Docker 18.09.6 + docker-compose" \
+      org.label-schema.name="Docker in Docker ${DOCKER_VERSION} (${DOCKER_CHANNEL})" \
+      org.label-schema.description="Docker in Docker ${DOCKER_VRSION} (${DOCKER_CHANNEL}) + latest docker-compose" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/meyayl/docker-dind" \
       org.label-schema.version=$VERSION \

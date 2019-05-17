@@ -24,6 +24,12 @@ if [[ "$DOCKER_TAG" =~ ^[0-9.]+$ ]]; then
     echo "Pushing image..."
     docker push ${DOCKER_REPO}:$DOCKER_NEWTAG
 
+    DOCKER_NEWTAG=$(docker run --entrypoint 'sh' docker:dind -c 'echo ${DOCKER_VERSION}')
+    echo "Adding tag '$DOCKER_NEWTAG' to image..."
+    docker tag $IMAGE_NAME ${DOCKER_REPO}:$DOCKER_NEWTAG
+    echo "Pushing image..."
+    docker push ${DOCKER_REPO}:$DOCKER_NEWTAG
+
 else
   echo "Nothing to do."
 fi
