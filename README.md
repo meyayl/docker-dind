@@ -2,6 +2,7 @@
 # Docker in Docker (DinD)
 
 Based on the official docker:dind image, which is for time beeing the latest 18.09.x version.
+
 This image includes additionaly git, curl, expect, python3 and docker-compose.
 
 ## Docker CLI Usage 
@@ -24,16 +25,16 @@ docker run -d \
  --env TZ=Europe/Berlin \
  --volume /volume1/docker/dind/root-data:/var/lib/docker:shared \
  --volume /volume1/docker/dind/data:/data:shared \
-  meyay/docker-dind:18.09.6
+  meyay/docker-dind:18.09.8
 ```
 
-The network needs to be created only once!
+The macvlan network needs to be created only once!
 
 ## Docker Compose Usage 
 ```
 services:
   docker-dind:
-    image:  meyay/docker-dind:18.09.6
+    image:  meyay/docker-dind:18.09.8
     container_name: docker-dind
     privileged: true
     restart: always
