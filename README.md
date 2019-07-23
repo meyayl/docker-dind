@@ -1,7 +1,7 @@
 [![](https://images.microbadger.com/badges/image/meyay/docker-dind.svg)](https://microbadger.com/images/meyay/docker-dind "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/meyay/docker-dind.svg)](https://microbadger.com/images/meyay/docker-dind "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/commit/meyay/docker-dind.svg)](https://microbadger.com/images/meyay/docker-dind "Get your own commit badge on microbadger.com")
 # Docker in Docker (DinD)
 
-Based on the official docker:dind image, which is for time beeing the latest 18.09.x version.
+Based on the official docker:dind image, which is for time beeing the latest 19.03.x version.
 
 This image includes additionaly git, curl, expect, python3 and docker-compose.
 
@@ -25,7 +25,7 @@ docker run -d \
  --env TZ=Europe/Berlin \
  --volume /volume1/docker/dind/root-data:/var/lib/docker:shared \
  --volume /volume1/docker/dind/data:/data:shared \
-  meyay/docker-dind:18.09.8
+  meyay/docker-dind:19.03.0
 ```
 
 The macvlan network needs to be created only once!
@@ -34,7 +34,7 @@ The macvlan network needs to be created only once!
 ```
 services:
   docker-dind:
-    image:  meyay/docker-dind:18.09.8
+    image:  meyay/docker-dind:19.03.0
     container_name: docker-dind
     privileged: true
     restart: always

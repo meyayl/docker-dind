@@ -19,7 +19,7 @@ RUN \
   apk add --no-cache tzdata curl bash git expect && \
   curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz | tar xvzf - -C / && \
   echo "**** compile docker-compose and remove build packages ****" && \  
-  apk add --no-cache bash curl expect git py3-pip python3-dev libffi-dev openssl-dev gcc libc-dev make && \
+  apk add --no-cache py3-pip python3-dev libffi-dev openssl-dev gcc libc-dev make && \
   pip3 install --no-cache-dir docker-compose && \
   apk del make libc-dev gcc openssl-dev libffi-dev python3-dev && \
   echo "**** cleanup ****" && \
