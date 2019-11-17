@@ -25,7 +25,7 @@ docker run -d \
  --env TZ=Europe/Berlin \
  --volume /volume1/docker/dind/root-data:/var/lib/docker:shared \
  --volume /volume1/docker/dind/data:/data:shared \
-  meyay/docker-dind:19.03.2
+  meyay/docker-dind:19.03.5
 ```
 
 The macvlan network needs to be created only once!
@@ -34,7 +34,7 @@ The macvlan network needs to be created only once!
 ```
 services:
   docker-dind:
-    image:  meyay/docker-dind:19.03.2
+    image:  meyay/docker-dind:19.03.5
     container_name: docker-dind
     privileged: true
     restart: always
