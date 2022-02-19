@@ -1,4 +1,4 @@
-FROM docker:20.10.7-dind
+FROM docker:20.10.12-dind
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -20,7 +20,8 @@ RUN \
   curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-amd64.tar.gz | tar xvzf - -C / && \
   echo "**** compile docker-compose and remove build packages ****" && \
   apk add --no-cache py3-pip python3-dev libffi-dev openssl-dev gcc libc-dev make && \
-  pip3 install --no-cache-dir docker-compose && \
+  pip3 install --no-cache-dir --upgrade pip && \
+  pip install --no-cache-dir docker-compose && \
   apk del make libc-dev gcc openssl-dev libffi-dev python3-dev && \
   echo "**** cleanup ****" && \
   rm -rf /tmp/*
