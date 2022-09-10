@@ -1,4 +1,4 @@
-FROM docker:20.10.12-dind
+FROM docker:20.10.17-dind
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -15,16 +15,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2 TZ="Europe/Berlin"
 
 RUN \
-  echo "**** install s6-overlay ****" && \
-  apk add --no-cache tzdata curl bash git expect && \
-  curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-amd64.tar.gz | tar xvzf - -C / && \
-  echo "**** compile docker-compose and remove build packages ****" && \
-  apk add --no-cache py3-pip python3-dev libffi-dev openssl-dev gcc libc-dev make && \
-  pip3 install --no-cache-dir --upgrade pip && \
-  pip install --no-cache-dir docker-compose && \
+  set +ex; \
+  apk add --update-cache tzdata curl bash git expect; \
+  curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-amd64.tar.gz | tar xvzf - -C /; \
+  apk add --no-cache py3-pip python3-dev libffi-dev openssl-dev gcc libc-dev make; \
+  pip3 install --no-cache-dir --upgrade pip; \
+  pip install --no-cache-dir docker-compose; \
   apk del make libc-dev gcc openssl-dev libffi-dev python3-dev && \
-  echo "**** cleanup ****" && \
-  rm -rf /tmp/*
+  rm -rf /tmp/* /var/cache/apk/*
 
 COPY root/ /
 CMD ["/init"]
