@@ -1,4 +1,4 @@
-FROM docker:20.10.17-dind
+FROM docker:20.10.22-dind
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
